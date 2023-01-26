@@ -91,4 +91,20 @@ export default function intervalScheduling (data) {
 	console.log('POSSIBILITIES:');
 	console.log(possibilities);
 
+	var schedules = [];
+	for(const possibility of possibilities){
+		var schedule = {};
+		for(const [abbr, subject] of Object.entries(possibility)){
+			for(const [day, hours] of Object.entries(subject.combinations)){
+				if(!schedule[hours[0]]){
+					schedule[hours[0]] = {};
+				}
+				schedule[hours[0]][day] = subject.name;
+			}
+		}
+		schedules.push(schedule);
+	}
+
+	console.log('SCHEDULES:');
+	console.log(schedules);
 }
