@@ -8,7 +8,6 @@ function App() {
   const [arrayGrade, setArrayGrade] = useState([]);
   const [gradeSchedules, setgradeSchedules] = useState([]);
   const [generated, setGenerated] = useState(false);
-  let count = 0;
 
   const Emoji = React.memo(({ className, label, symbol }) =>
     symbol === "" ? (
@@ -30,12 +29,8 @@ function App() {
 
   const handleGradeChange = (array) => {
     const obj = intervalScheduling(array);
-    console.log(obj);
 
     setgradeSchedules(obj.schedules);
-    console.log("asdklfj");
-    console.log(gradeSchedules);
-    console.log(arrayGrade);
     setGenerated(true);
   };
 

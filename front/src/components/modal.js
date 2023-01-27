@@ -16,6 +16,13 @@ const AddModal = (props) => {
 
   const animatedComponents = makeAnimated();
 
+  const clearState = () => {
+    setAbbreviation("");
+    setName("");
+    setSelectedDays([]);
+    setSelectedHour("");
+  };
+
   const options = [
     { day: 1, value: "segunda", label: "Segunda" },
     { day: 2, value: "terca", label: "Terça" },
@@ -52,6 +59,13 @@ const AddModal = (props) => {
   disciplina.startTime = selectedHour.value;
   disciplina.duration = 2;
   disciplina.endTime = selectedHour.value + disciplina.duration;
+
+  const onSubmit = () => {
+    clearState();
+    populateDisciplina();
+    props.handleArrayChange(disciplina);
+    handleClose();
+  };
 
   function populateDisciplina() {
     for (const key of selectedDays) {
@@ -138,9 +152,12 @@ const AddModal = (props) => {
           <Button
             variant="primary"
             onClick={() => {
-              populateDisciplina();
-              props.handleArrayChange(disciplina);
-              handleClose();
+              name === "" ||
+              abbreviation === "" ||
+              selectedDays.length === 0 ||
+              selectedHour === ""
+                ? alert("Preencha todos os campos")
+                : onSubmit();
             }}
           >
             INSERIR
