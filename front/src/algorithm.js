@@ -15,6 +15,7 @@ function isEqual(obj1, obj2){
 
 export default function intervalScheduling (data) {
     data.sort(endTimeProperty());
+	var obj = new Object();
 	var answer = {};
 	var conflict = {};
 	var rejected = {};
@@ -51,15 +52,11 @@ export default function intervalScheduling (data) {
 		}
 	}
 
-	console.log('ANSWER:');
-	console.log(answer);
+	
+	obj.answer = answer
+	
 	possibilities.push(answer);
 
-	console.log('REJECTED:')
-	console.log(rejected);
-
-	console.log('CONFLICTED:')
-	console.log(conflict);
 
 	for(const [accepted, rejecteds] of Object.entries(conflict)){
 		for(const option of rejecteds){
@@ -88,8 +85,7 @@ export default function intervalScheduling (data) {
 		}
 	}
 
-	console.log('POSSIBILITIES:');
-	console.log(possibilities);
+
 
 	var schedules = [];
 	for(const possibility of possibilities){
@@ -105,6 +101,8 @@ export default function intervalScheduling (data) {
 		schedules.push(schedule);
 	}
 
-	console.log('SCHEDULES:');
-	console.log(schedules);
+	obj.schedules = schedules
+
+
+	return obj
 }
