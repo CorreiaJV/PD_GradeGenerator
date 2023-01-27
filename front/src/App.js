@@ -2,24 +2,42 @@ import "./App.css";
 import React, { useState } from "react";
 import AddModal from "./components/modal";
 import intervalScheduling from "./algorithm";
+import googleCalendar from "./google";
+import TableGrade from "./components/table";
+
 
 function App() {
   const [arrayGrade, setArrayGrade] = useState([]);
+  const [gradeAnswer, setgradeAnswer] = useState([]);
+  const [gradeSchedules, setgradeSchedules] = useState([]);
+  const [generated, setGenerated] = useState(false);
+
+
 
   const Emoji = React.memo(({ className, label, symbol }) =>
-  symbol === ""? <span></span>:
-  <span className={className} role="img" aria-label={label}>
-      {String.fromCodePoint(symbol)}
-  </span>)
-  
-   const handleArrayChange= (data)=> {
-   setArrayGrade(arrayMaterias => [...arrayMaterias, data]);
+    symbol === "" ? <span></span> :
+      <span className={className} role="img" aria-label={label}>
+        {String.fromCodePoint(symbol)}
+      </span>)
+
+  const handleArrayChange = (data) => {
+    setArrayGrade(arrayMaterias => [...arrayMaterias, data]);
   }
 
   const handleRemoveItem = (obj) => {
-     
-     setArrayGrade(arrayGrade.filter(item => item.nome !== obj.nome))
-   };
+    setArrayGrade(arrayGrade.filter(item => item.nome !== obj.nome))
+  };
+
+  const handleGradeChange = (array) => {
+    const obj = intervalScheduling(array)
+    console.log(obj)
+
+    setgradeSchedules(obj.schedules)
+    console.log("asdklfj")
+    console.log(gradeSchedules)
+    console.log(arrayGrade)
+    setGenerated(true)
+  };
 
   return (
     <div className="App">
@@ -39,8 +57,8 @@ function App() {
       </p>
 
       <div class="center">
-        <AddModal handleArrayChange = {handleArrayChange}/>
-        <button type="button" class="btn btn-success btn-margin" onClick={()=>intervalScheduling(arrayGrade)}>
+        <AddModal handleArrayChange={handleArrayChange} />
+        <button type="button" class="btn btn-success btn-margin" onClick={() => handleGradeChange(arrayGrade)}>
           GERAR GRADES
         </button>
       </div>
@@ -70,24 +88,59 @@ function App() {
                   <th scope="row">{obj.name}</th>
                   <td>{obj.abbreviation}</td>
                   <td>{obj.startTime}</td>
-                  <td><Emoji symbol= {obj.segunda}/></td>
-                  <td><Emoji symbol= {obj.terca}/></td>
-                  <td><Emoji symbol= {obj.quarta}/></td>
-                  <td><Emoji symbol= {obj.quinta}/></td>
-                  <td><Emoji symbol= {obj.sexta}/></td>
-                  <td><Emoji symbol= {obj.sabado}/></td>
-                  <td><Emoji symbol= {obj.domingo}/></td>
+                  <td><Emoji symbol={obj.segunda} /></td>
+                  <td><Emoji symbol={obj.terca} /></td>
+                  <td><Emoji symbol={obj.quarta} /></td>
+                  <td><Emoji symbol={obj.quinta} /></td>
+                  <td><Emoji symbol={obj.sexta} /></td>
+                  <td><Emoji symbol={obj.sabado} /></td>
+                  <td><Emoji symbol={obj.domingo} /></td>
                   <td className="center">
-                    <button type="button" class="btn" onClick={()=>{handleRemoveItem(obj)}}>
-                        <Emoji className="hover" symbol= "0x274C"/>
+                    <button type="button" class="btn" onClick={() => { handleRemoveItem(obj) }}>
+                      <Emoji className="hover" symbol="0x274C" />
                     </button>
-                   </td>
+                  </td>
 
                 </tr>
               );
             })}
           </tbody>
         </table>
+
+
+      </div>
+
+      <div class="center">
+
+        <div clas="margin" style={{ width: "80%" }}>
+
+          <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-bs-interval="false" >
+            <div class="carousel-inner">
+              {gradeSchedules.map((obj, index) => {
+                return (<>
+                  {index === 0 ? <div class="carousel-item active ">
+                    <TableGrade obj={obj}> </TableGrade>
+                  </div> : <div class="carousel-item ">
+                    <TableGrade obj={obj}> </TableGrade>
+                  </div>}
+
+
+
+                </>)
+              })}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" style={{padding: "10px", filter: "invert(1)", width: "0%"}} aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" style={{padding: "10px", filter: "invert(1)", width: "0%"}} aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+
+        </div>
       </div>
     </div>
   );
