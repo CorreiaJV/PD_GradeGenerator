@@ -20,7 +20,14 @@ function App() {
   );
 
   const handleArrayChange = (data) => {
-    setArrayGrade((arrayMaterias) => [...arrayMaterias, data]);
+    if( (arrayGrade.find(x => x.abbreviation === data.abbreviation)) !== undefined){
+      alert("Sigla já existente, por favor coloque outra");
+      return true;
+    }else{
+      setArrayGrade((arrayMaterias) => [...arrayMaterias, data]);
+      return false;
+    }
+    
   };
 
   const handleRemoveItem = (obj) => {

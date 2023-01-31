@@ -61,10 +61,13 @@ const AddModal = (props) => {
   disciplina.endTime = selectedHour.value + disciplina.duration;
 
   const onSubmit = () => {
-    clearState();
     populateDisciplina();
-    props.handleArrayChange(disciplina);
-    handleClose();
+    let aux = props.handleArrayChange(disciplina);
+    if (aux === false) {
+      clearState(); 
+      handleClose();
+    }
+
   };
 
   function populateDisciplina() {
@@ -153,9 +156,9 @@ const AddModal = (props) => {
             variant="primary"
             onClick={() => {
               name === "" ||
-              abbreviation === "" ||
-              selectedDays.length === 0 ||
-              selectedHour === ""
+                abbreviation === "" ||
+                selectedDays.length === 0 ||
+                selectedHour === ""
                 ? alert("Preencha todos os campos")
                 : onSubmit();
             }}
