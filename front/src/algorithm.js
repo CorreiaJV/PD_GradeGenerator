@@ -95,7 +95,8 @@ export default function intervalScheduling (data) {
 				if(!schedule[hours[0]]){
 					schedule[hours[0]] = {};
 				}
-				schedule[hours[0]][day] = subject.name;
+				console.log(subject)
+				schedule[hours[0]][day] = subject.abbreviation;
 			}
 		}
 		schedules.push(schedule);
