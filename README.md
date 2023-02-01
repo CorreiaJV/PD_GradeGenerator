@@ -15,7 +15,7 @@ Todo aluno da FGA já testemunhou o caótico início de um semestre. Porém, o d
 
 Como os alunos querem se formar o quanto antes, eles sempre buscam formar uma grade com o maior número possível de matérias na grade sem que as disciplinas tenham choque de horário.
 
-Pensando nesse contexto, esse projeto visa facilitar a criação de uma grade horária para alunos da FGA através da utilização de Programação Dinâmica para criar um algoritmo eficiente. Esse agloritmo busca, a partir de uma série matérias possíveis de serem cursadas no próximo semestre, calcular todas as combinações de grades horárias com o maior número de matérias possível.
+Pensando nesse contexto, esse projeto visa facilitar a criação de uma grade horária para alunos da FGA através da utilização de Programação Dinâmica para criar um algoritmo eficiente. Esse algoritmo busca, a partir de uma série matérias possíveis de serem cursadas no próximo semestre, calcular todas as combinações de grades horárias com o maior número de matérias possível.
 
 Dessa forma, o graduando pode inserir todas as disciplinas que tem a intenção de cursar no próximo semestre e o algoritmo faz todo o trabalho de montar as possíveis grades com o maior número de matérias, facilitando esse processo pré de matrícula.
 
@@ -25,6 +25,10 @@ Dessa forma, o graduando pode inserir todas as disciplinas que tem a intenção 
 ![Modal](/img/modal.png)
 
 ![Resultado](/img/resultado.png)
+
+## Vídeo de Apresentação
+(O vídeo em qualidade cheia pode ser encontrado ser baixado clicando [aqui]() e está na pasta principal do repositório)
+
 
 ## Instalação 
 **Linguagem**: JavaScript<br>

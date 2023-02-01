@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import AddModal from "./components/modal";
-import intervalScheduling from "./algorithm";
+import generateSchedules from "./algorithm";
 import TableGrade from "./components/table";
 
 function App() {
@@ -31,11 +31,11 @@ function App() {
   };
 
   const handleRemoveItem = (obj) => {
-    setArrayGrade(arrayGrade.filter((item) => item.nome !== obj.nome));
+    setArrayGrade(arrayGrade.filter((item) => item.name !== obj.name));
   };
 
   const handleGradeChange = (array) => {
-    const obj = intervalScheduling(array);
+    const obj = generateSchedules(array);
 
     setgradeSchedules(obj.schedules);
     setGenerated(true);

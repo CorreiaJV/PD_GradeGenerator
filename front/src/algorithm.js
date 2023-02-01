@@ -13,9 +13,9 @@ function isEqual(obj1, obj2){
 	return true;
 }
 
-export default function intervalScheduling (data) {
+export default function generateSchedules (data) {
     data.sort(endTimeProperty());
-	var obj = new Object();
+	var obj = {};
 	var answer = {};
 	var conflict = {};
 	var rejected = {};
@@ -95,7 +95,7 @@ export default function intervalScheduling (data) {
 				if(!schedule[hours[0]]){
 					schedule[hours[0]] = {};
 				}
-				console.log(subject)
+				// console.log(subject)
 				schedule[hours[0]][day] = subject.abbreviation;
 			}
 		}
@@ -104,6 +104,21 @@ export default function intervalScheduling (data) {
 
 	obj.schedules = schedules
 
+	console.log('ANSWER:');
+	console.log(answer);
+	possibilities.push(answer);
+
+	console.log('REJECTED:')
+	console.log(rejected);
+
+	console.log('CONFLICTED:')
+	console.log(conflict);
+
+	console.log('POSSIBILITIES:');
+	console.log(possibilities);
+
+	console.log('SCHEDULES:');
+	console.log(schedules);
 
 	return obj
 }
